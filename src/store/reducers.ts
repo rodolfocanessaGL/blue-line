@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
+import { newsReducer } from '../modules/Home';
 
-export const rootReducer = combineReducers({});
-
-export type RootState = ReturnType<typeof rootReducer>;
+export const rootReducers = {
+  news: newsReducer
+};

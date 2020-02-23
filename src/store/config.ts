@@ -1,9 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit';
 
-import { rootReducer } from './reducers';
+import { createStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit';
+import { createEpicMiddleware } from 'redux-observable';
+import logger from 'redux-logger';
 
-export const store = configureStore({
-  reducer: rootReducer
+import { api } from '../utils';
+import { rootReducers } from './reducers';
+import { rootEpic } from './epics';
+
+const epicMiddleware = createEpicMiddleware({
+  dependencies: { api }
 });
 
-export type AppDispatch = typeof store.dispatch
+const middlewares = process.env.NODE_ENV === 'development' ? applyMiddleware(
+  logger,
+  epicMiddleware
+) : applyMiddleware(epicMiddleware);
+
+const store = createStore(
+  combineReducers(rootReducers),
+  middlewares
+);
+
+epicMiddleware.run(rootEpic);
+
+export default store

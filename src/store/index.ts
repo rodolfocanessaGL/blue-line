@@ -1,2 +1,2 @@
 
-export { store } from './config';
+export { default as store } from './config';
