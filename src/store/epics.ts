@@ -1,8 +1,5 @@
 import { combineEpics } from 'redux-observable';
 
-import { newsEpic, sourcesEpic } from 'modules/Home'
+import { newsEpic, sourcesEpic } from 'modules/Home';
 
-export const rootEpic = combineEpics(
-  newsEpic,
-  sourcesEpic
-);
+export const rootEpic = combineEpics(newsEpic, sourcesEpic);

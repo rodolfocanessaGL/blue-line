@@ -3,7 +3,7 @@ export enum Devices {
   SM = 720,
   MD = 1024,
   LG
-};
+}
 
 const getDevice = (width: number = window.innerWidth): Devices => {
   if (width < Devices.XS) {

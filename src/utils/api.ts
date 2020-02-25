@@ -8,7 +8,7 @@ const getParamsStr = (params: QueryParams): string => {
   const entries = Object.entries(params);
   const paramsArray = entries.map(([k, v]) => `${k}=${v}`);
 
-  if (!paramsArray.length) { 
+  if (!paramsArray.length) {
     return '';
   }
 
@@ -30,10 +30,7 @@ const api = <T = any>(params: QueryParams): Observable<T> => {
   const paramStr = getParamsStr(params);
   const fullUrl = `${urlBase}${paramStr}`;
 
-  return ajax(fullUrl)
-    .pipe(
-      map((res: AjaxResponse) => res.response)
-    );
+  return ajax(fullUrl).pipe(map((res: AjaxResponse) => res.response));
 };
 
 export default api;

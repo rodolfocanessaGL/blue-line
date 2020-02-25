@@ -4,7 +4,7 @@ export const GUTTER = 16;
 
 // Functions
 
-export const toRem = (px: number, isNumb: boolean = false): string | number => {
+export const toRem = (px: number, isNumb = false): string | number => {
   const remNumb = px / GUTTER;
 
   if (isNumb) {

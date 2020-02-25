@@ -1,5 +1,8 @@
-
-import { createStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit';
+import {
+  createStore,
+  applyMiddleware,
+  combineReducers
+} from '@reduxjs/toolkit';
 import { createEpicMiddleware } from 'redux-observable';
 import logger from 'redux-logger';
 
@@ -11,16 +14,13 @@ const epicMiddleware = createEpicMiddleware({
   dependencies: { api }
 });
 
-const middlewares = process.env.NODE_ENV === 'development' ? applyMiddleware(
-  logger,
-  epicMiddleware
-) : applyMiddleware(epicMiddleware);
+const middlewares =
+  process.env.NODE_ENV === 'development'
+    ? applyMiddleware(logger, epicMiddleware)
+    : applyMiddleware(epicMiddleware);
 
-const store = createStore(
-  combineReducers(rootReducers),
-  middlewares
-);
+const store = createStore(combineReducers(rootReducers), middlewares);
 
 epicMiddleware.run(rootEpic);
 
-export default store
+export default store;

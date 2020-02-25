@@ -9,9 +9,8 @@ const useBreakpoint = () => {
 
   useEffect(() => {
     const resize = fromEvent(window, 'resize');
-    const subscription = resize.pipe(
-      throttle(() => interval(200))
-    )
+    const subscription = resize
+      .pipe(throttle(() => interval(200)))
       .subscribe(() => {
         setBrkPnt(getDevice(window.innerWidth));
       });
