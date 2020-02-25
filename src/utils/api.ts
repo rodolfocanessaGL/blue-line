@@ -1,11 +1,12 @@
 import { ajax, AjaxResponse } from 'rxjs/ajax';
-
-import { QueryParams } from '../types';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+
+import { QueryParams } from 'types';
 
 const getParamsStr = (params: QueryParams): string => {
   const entries = Object.entries(params);
-  const paramsArray = entries.map(([v, k]) => `${v}=${k}`);
+  const paramsArray = entries.map(([k, v]) => `${k}=${v}`);
 
   if (!paramsArray.length) { 
     return '';
@@ -14,8 +15,18 @@ const getParamsStr = (params: QueryParams): string => {
   return `&${paramsArray.join('&')}`;
 };
 
-const api = (params: QueryParams = {}) => {
-  const urlBase = `${process.env.REACT_APP_ENDPOINT}?apiKey=${process.env.REACT_APP_API_KEY}`.trim();
+const formatUrl = (url: string): string => {
+  if (url.charAt(0) === '/') {
+    return url;
+  }
+
+  return `/${url}`;
+};
+
+const api = <T = any>(params: QueryParams): Observable<T> => {
+  const { url } = params;
+  const urlFormated = formatUrl(url);
+  const urlBase = `${process.env.REACT_APP_ENDPOINT}${urlFormated}?apiKey=${process.env.REACT_APP_API_KEY}`;
   const paramStr = getParamsStr(params);
   const fullUrl = `${urlBase}${paramStr}`;
 

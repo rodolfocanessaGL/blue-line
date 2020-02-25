@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit'
 import { createEpicMiddleware } from 'redux-observable';
 import logger from 'redux-logger';
 
-import { api } from '../utils';
+import { api } from 'utils';
 import { rootReducers } from './reducers';
 import { rootEpic } from './epics';
 

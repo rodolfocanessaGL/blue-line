@@ -1,0 +1,13 @@
+export const NEWS_URL = 'everything';
+export const NEWS_SORT_BY = 'popularity';
+export const NEWS_PAGE_SIZE = 20;
+export const SOURCES_URL = 'sources';
+export const NEWS_SLICE_NAME = 'news';
+export const SOURCES_SLICE_NAME = 'sources';
+export const ARTICLE_FILTER_SLICE_NAME = 'articleFilter';
+export const DEFAULT_CATEGORY = 'all';
+export const DEFAULT_LANGUAGE = 'all';
+export const DEFAULT_COUNTRY = 'all';
+export const DEFULT_SOURCE_FILTER = '';
+export const MAX_SOURCES = 20;
+export const DEFAULT_ARTICLE_FILTER_VALUE = '';

@@ -3,27 +3,18 @@ import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-import { Ellipsis } from '../../../../components';
-import { getMonth } from '../../../../utils';
+import { Ellipsis } from 'components';
+import { formatArticleId, formatArticleDate } from 'utils';
 import { Article } from '../../types';
-import { formatArticleId } from '../../utils';
 import {
   CardContainer,
   ContentTop,
   CardCol,
   CardTitle,
   CardImg,
+  CardDescription,
   StyledLink
 } from './styles';
-
-const formatDate = (dateStr: string): string => {
-  const date = new Date(dateStr);
-  const monthName = getMonth(date.getMonth());
-  const day = date.getDate();
-  const year = date.getFullYear();
-
-  return `${monthName} ${day}, ${year}`;
-};
 
 const ArticleCard: FunctionComponent<Article> = ({
   source,
@@ -63,11 +54,11 @@ const ArticleCard: FunctionComponent<Article> = ({
               <Tooltip id={`tooltip-article-description-${formatArticleId(title)}`}>{description}</Tooltip>
             }
           >
-            <Card.Text>
+            <CardDescription>
               <Ellipsis lg={110}>{description}</Ellipsis>
-            </Card.Text>
+            </CardDescription>
           </OverlayTrigger>
-          <div className="text-center">{formatDate(publishedAt)}</div>
+          <div className="text-center">{formatArticleDate(publishedAt)}</div>
         </Card.Body>
       </CardContainer>
     </StyledLink>

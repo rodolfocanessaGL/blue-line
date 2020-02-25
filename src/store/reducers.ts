@@ -1,5 +1,11 @@
-import { newsReducer } from '../modules/Home';
+import {
+  newsReducer,
+  sourcesReducer,
+  articleFilterReducer
+} from 'modules/Home';
 
 export const rootReducers = {
-  news: newsReducer
+  news: newsReducer,
+  source: sourcesReducer,
+  articleFilter: articleFilterReducer
 };

@@ -4,8 +4,9 @@ import React, {
   useEffect,
   useState
 } from 'react';
+import classnames from 'classnames';
 
-import loading from './puff.svg';
+import loadingSrc from './loading.svg';
 import { LazyImgProps } from './types';
 
 const isAble = (): boolean => (
@@ -16,10 +17,11 @@ const isAble = (): boolean => (
 
 const LazyImg: FunctionComponent<LazyImgProps> = ({
   src,
+  className = '',
   ...props
 }) => {
   const imgRef = useRef(null);
-  const [imgSrc, setImgSrc] = useState(loading);
+  const [imgSrc, setImgSrc] = useState(loadingSrc);
 
   useEffect(() => {
     const imgEl: any = imgRef.current;
@@ -44,8 +46,11 @@ const LazyImg: FunctionComponent<LazyImgProps> = ({
 
   return (
     <img
-      ref={imgRef}
       src={imgSrc}
+      className={classnames(className, {
+        loading: loadingSrc === imgSrc
+      })}
+      ref={imgRef}
       alt="img"
       {...props}
     />

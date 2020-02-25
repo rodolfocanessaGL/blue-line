@@ -3,8 +3,8 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 
-import { LazyImg } from '../../../../components';
-import { toRem, colors } from '../../../../styles';
+import { LazyImg } from 'components';
+import { toRem, colors } from 'styles';
 
 export const CardContainer = styled(Card)`
   transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
@@ -33,6 +33,18 @@ export const CardImg = styled(LazyImg)`
   object-fit: cover;
   width: 100%;
   height: 250px;
+
+  &.loading {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 75px auto;
+  }
+`;
+
+export const CardDescription = styled(Card.Text)`
+  height: ${toRem(72)};
+  overflow: hidden;
 `;
 
 export const StyledLink = styled(Link)`
