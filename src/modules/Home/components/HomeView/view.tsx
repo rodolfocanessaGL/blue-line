@@ -9,16 +9,17 @@ import { RouteComponentProps } from 'react-router';
 
 import { formatArticleId } from 'utils';
 import { AppState } from 'types';
-import { NewsState } from '../../types';
+import { NewsState, SourcesState } from '../../types';
 import { fetchNews, resetSources, resetNews, setArticleFilter } from '../../slices';
 import { SourcesFilter } from '../SourcesFilter';
 import { ArticleCard } from '../ArticleCard';
+import { HomeError } from '../HomeError';
 import { LoadingImg, HomeViewContainer } from './styles';
 import loadingSrc from './loading.svg';
 
 const HomeView: FunctionComponent<RouteComponentProps>  = (props) => {
   const { articles, totalResults, loading: newsLoading } = useSelector<AppState, NewsState>((state) => state.news);
-  const sourcesLoading = useSelector<AppState, boolean>((state) => state.source.loading);
+  const { loading: sourcesLoading } = useSelector<AppState, SourcesState>((state) => state.source);
   const lastLocation = useLastLocation();
   const dispatch = useDispatch();
   const loadMore = () => dispatch(fetchNews());
@@ -34,6 +35,7 @@ const HomeView: FunctionComponent<RouteComponentProps>  = (props) => {
   return (
     <HomeViewContainer className="bg-light">
       <Container>
+        <HomeError />
         <Row>
           <Col>
             <h1 className="text-center py-4">News Feed</h1>

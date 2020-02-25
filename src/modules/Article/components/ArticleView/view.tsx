@@ -25,6 +25,10 @@ const ArticleView: FunctionComponent<RouteComponentProps<ArticleRouteParams>> = 
     return <Redirect to={REDIRECT_PATCH} />
   }
 
+if (true) {
+  throw new Error('');
+}
+
   const {
     source: { name: sourceName },
     title: articleTitle,

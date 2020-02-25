@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 import { ErrorTemplate } from './styles';
 
-const NotFoundView: FunctionComponent<RouteComponentProps> = () => (
+const ErrorView: FunctionComponent<RouteComponentProps> = () => (
   <Container>
     <Row>
       <Col>
         <ErrorTemplate>
           <h1>Oops!</h1>
-          <h2>404 Not Found</h2>
-          <p>Sorry, an error has occured, Requested page not found!</p>
+          <h2>App Crashed</h2>
+          <p>Sorry, an error has occured!</p>
           <div className="py-3">
             <Link className="btn btn-primary btn-lg" to="/">Take Me Home</Link>
           </div>
@@ -24,4 +24,4 @@ const NotFoundView: FunctionComponent<RouteComponentProps> = () => (
   </Container>
 );
 
-export default NotFoundView;
+export default ErrorView;
