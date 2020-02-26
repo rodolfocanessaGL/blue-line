@@ -2,8 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Prerequisites
 
-Node JS
-Yarn
+- Node JS
+- Yarn
 
 # Installation
 
