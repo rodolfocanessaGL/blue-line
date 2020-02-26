@@ -6,7 +6,7 @@ import { LastLocationProvider } from 'react-router-last-location';
 import { ErrorBoundary } from 'components';
 import { HomeView } from 'modules/Home';
 import { ArticleView } from 'modules/Article';
-import { NotFoundView } from 'modules/NotFound'
+import { NotFoundView } from 'modules/NotFound';
 import { ErrorView } from 'modules/Error';
 
 const history = createBrowserHistory();
