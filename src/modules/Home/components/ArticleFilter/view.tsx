@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent, FormEvent } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -17,6 +17,17 @@ const ArticleFilter = () => {
   const [ value, setValue ] = useState(DEFAULT_ARTICLE_FILTER_VALUE);
   const hasSources = useSelector<AppState, boolean>((state) => !!state.source.sources.length);
   const dispatch = useDispatch();
+  const onFilter = () => {
+    dispatch(setArticleFilter(value));
+    dispatch(resetNews());
+    dispatch(fetchNews());
+  };
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onFilter()
+    }
+  };
+  const onKeywordChange = (e: FormEvent<HTMLInputElement>) => setValue(e.currentTarget.value);
 
   useEffect(() => {
     if (!hasSources) {
@@ -31,23 +42,13 @@ const ArticleFilter = () => {
         aria-label="By keyword or phrase"
         aria-describedby="basic-addon2"
         value={value}
-        onChange={(e: any) => setValue(e.target.value)}
-        onKeyDown={(e: any) => {
-          if (e.key === 'Enter') {
-            dispatch(setArticleFilter(value));
-            dispatch(resetNews());
-            dispatch(fetchNews());
-          }
-        }}
+        onChange={onKeywordChange}
+        onKeyDown={onKeyDown}
       />
       <InputGroup.Append>
         <Button
           variant="outline-secondary"
-          onClick={() => {
-            dispatch(setArticleFilter(value));
-            dispatch(resetNews());
-            dispatch(fetchNews());
-          }}
+          onClick={onFilter}
         >
           Search
         </Button>

@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FormControl from 'react-bootstrap/FormControl';
 import classnames from 'classnames';
 
 import { AppState } from 'types';
-import { SourcesState } from '../../types';
+import { SourcesState, SourceState } from '../../types';
 import { DEFULT_SOURCE_FILTER, MAX_SOURCES } from '../../constants';
 import { selectSource, fetchNews, resetNews } from '../../slices';
 import { FilterDropdown } from './styles';
@@ -13,6 +13,16 @@ const SourceDropdown: FunctionComponent = () => {
   const [ filter, setFilter ] = useState(DEFULT_SOURCE_FILTER);
   const { sources } = useSelector<AppState, SourcesState>((state) => state.source);
   const dispatch = useDispatch();
+  const onFilterChange = (e: FormEvent<HTMLInputElement>) => setFilter(e.currentTarget.value);
+  const onSelect = (s: SourceState) => () => {
+    const selected = sources.filter(s => s.selected).length
+
+    if (selected < MAX_SOURCES) {
+      dispatch(selectSource(s));
+      dispatch(resetNews());
+      dispatch(fetchNews());
+    }
+  };
 
   return (
     <FilterDropdown
@@ -26,7 +36,7 @@ const SourceDropdown: FunctionComponent = () => {
         className="mx-3 my-2 w-auto"
         placeholder="Type to filter..."
         value={filter}
-        onChange={(e: any) => setFilter(e.target.value)}
+        onChange={onFilterChange}
       />
       {
         sources
@@ -40,15 +50,7 @@ const SourceDropdown: FunctionComponent = () => {
                 className={classnames('dropdown-item', {
                   active: selected
                 })}
-                onClick={() => {
-                  const selected = sources.filter(s => s.selected).length
-
-                  if (selected < MAX_SOURCES) {
-                    dispatch(selectSource(s));
-                    dispatch(resetNews());
-                    dispatch(fetchNews());
-                  }
-                }}
+                onClick={onSelect(s)}
               >
                 {name}
               </button>
