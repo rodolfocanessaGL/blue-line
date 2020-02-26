@@ -12,17 +12,19 @@ interface WithRouterTestConfig {
 const withRouter = (
   ui: any,
   {
-    path = '/',
     route = '/',
     history = createMemoryHistory({ initialEntries: [route] })
   }: WithRouterTestConfig = {}
 ) => {
+  const Wrapper = ({ children }: any) => (
+    <Router history={history}>
+      {children}
+    </Router>
+  );
+
   return {
-    ...render(
-      <Router history={history}>
-        <Route path={path} component={ui} />
-      </Router>
-    )
+    ...render(ui, { wrapper: Wrapper }),
+    history
   };
 };
 
