@@ -23,7 +23,7 @@ const formatUrl = (url: string): string => {
   return `/${url}`;
 };
 
-const api = <T = any>(params: QueryParams): Observable<T> => {
+const api = <T = {}>(params: QueryParams): Observable<T> => {
   const { url } = params;
   const urlFormated = formatUrl(url);
   const urlBase = `${process.env.REACT_APP_ENDPOINT}${urlFormated}?apiKey=${process.env.REACT_APP_API_KEY}`;

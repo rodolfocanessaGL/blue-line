@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -11,7 +11,7 @@ import { ErrorView } from 'modules/Error';
 
 const history = createBrowserHistory();
 
-const AppRouter = () => (
+const AppRouter: FunctionComponent = () => (
   <Router history={history}>
     <LastLocationProvider>
       <ErrorBoundary>

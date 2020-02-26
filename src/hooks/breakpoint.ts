@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { fromEvent, interval } from 'rxjs';
 import { throttle } from 'rxjs/operators';
 
-import { getDevice } from '../utils';
+import { getDevice, Devices } from '../utils';
 
-const useBreakpoint = () => {
+const useBreakpoint = (): Devices => {
   const [brkPnt, setBrkPnt] = useState(() => getDevice(window.innerWidth));
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const useBreakpoint = () => {
         setBrkPnt(getDevice(window.innerWidth));
       });
 
-    return () => subscription.unsubscribe();
+    return (): void => subscription.unsubscribe();
   }, []);
 
   return brkPnt;

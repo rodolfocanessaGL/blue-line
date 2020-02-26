@@ -9,6 +9,7 @@ module.exports = {
   "plugins": ["react", "@typescript-eslint/eslint-plugin", "prettier"],
   "env": {
     "browser": true,
+    "node": true,
     "jasmine": true,
     "jest": true
   },
