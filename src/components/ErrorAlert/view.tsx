@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, memo } from 'react';
 import Alert from 'react-bootstrap/Alert';
 
 import { ErrorAlertProps } from './types';
@@ -21,4 +21,4 @@ const ErrorAlert: FunctionComponent<ErrorAlertProps> = ({
   );
 };
 
-export default ErrorAlert;
+export default memo(ErrorAlert);

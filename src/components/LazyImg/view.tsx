@@ -2,7 +2,8 @@ import React, {
   FunctionComponent,
   useRef,
   useEffect,
-  useState
+  useState,
+  memo
 } from 'react';
 import classnames from 'classnames';
 
@@ -57,4 +58,4 @@ const LazyImg: FunctionComponent<LazyImgProps> = ({
   );
 };
 
-export default LazyImg;
+export default memo(LazyImg);

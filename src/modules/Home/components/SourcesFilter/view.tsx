@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -101,4 +101,4 @@ const SourcesFilter = () => {
   );
 };
 
-export default SourcesFilter;
+export default memo(SourcesFilter);

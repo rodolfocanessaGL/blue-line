@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, memo } from 'react';
 
 import { useBreakpoint } from '../../hooks';
 import { Devices } from '../../utils';
@@ -49,4 +49,4 @@ const Ellipsis: FunctionComponent<EllipsisProps> = ({
   return <>{formatStr(chars, children)}</>;
 };
 
-export default Ellipsis;
+export default memo(Ellipsis);

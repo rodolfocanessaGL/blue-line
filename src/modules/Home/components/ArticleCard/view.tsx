@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, memo } from 'react';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -65,4 +65,4 @@ const ArticleCard: FunctionComponent<Article> = ({
   </CardCol>
 );
 
-export default ArticleCard;
+export default memo(ArticleCard);

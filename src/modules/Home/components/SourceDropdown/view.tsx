@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useState, FormEvent } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  FormEvent,
+  useCallback,
+  memo
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FormControl from 'react-bootstrap/FormControl';
 import classnames from 'classnames';
@@ -13,7 +19,10 @@ const SourceDropdown: FunctionComponent = () => {
   const [ filter, setFilter ] = useState(DEFULT_SOURCE_FILTER);
   const { sources } = useSelector<AppState, SourcesState>((state) => state.source);
   const dispatch = useDispatch();
-  const onFilterChange = (e: FormEvent<HTMLInputElement>) => setFilter(e.currentTarget.value);
+  const onFilterChange = useCallback(
+    (e: FormEvent<HTMLInputElement>) => setFilter(e.currentTarget.value),
+    []
+  );
   const onSelect = (s: SourceState) => () => {
     const selected = sources.filter(s => s.selected).length
 
@@ -61,4 +70,4 @@ const SourceDropdown: FunctionComponent = () => {
   );
 };
 
-export default SourceDropdown;
+export default memo(SourceDropdown);

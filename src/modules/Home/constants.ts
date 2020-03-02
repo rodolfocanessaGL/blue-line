@@ -11,3 +11,4 @@ export const DEFAULT_COUNTRY = 'all';
 export const DEFULT_SOURCE_FILTER = '';
 export const MAX_SOURCES = 20;
 export const DEFAULT_ARTICLE_FILTER_VALUE = '';
+export const SEARCH_BUTTON_ID = 'search-button';
